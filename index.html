@@ -71,7 +71,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- ✅ WhatsApp Button (como link real) -->
   <div class="whatsapp">
-    <a class="button" href="#" target="_blank" id="whatsappButton">
+    <a class="button" href="https://wa.me/5493517437217?text=¡Buenas! Me gustaría crear un usuario. Mi nombre es:" target="_blank" id="whatsappButton">
       <span> Crea tu usuario </span>
       <img src="./img/whatsapp-64.png" alt="WhatsApp Logo">
     </a>
@@ -106,40 +106,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
 
-  <!-- ✅ Script para actualizar link con ChatGPT y fallback -->
+  <!-- ✅ Script para actualizar link -->
   <script>
-    document.getElementById('whatsappButton').addEventListener('click', async function(e) {
-      e.preventDefault();
-
-      const nombre = document.getElementById('nombreUsuario').value.trim();
+    document.getElementById('whatsappButton').addEventListener('click', function(e) {
+      var nombre = document.getElementById('nombreUsuario').value.trim();
       if (nombre === "") {
         alert("Por favor escribe tu nombre antes de continuar.");
+        e.preventDefault();
         return;
       }
-
-      let frase = null;
-
-      try {
-        // 🔹 Intentar pedir frase random al backend
-        let response = await fetch("/api/mensaje-random");
-        if (response.ok) {
-          let data = await response.json();
-          frase = data.frase;
-        }
-      } catch (error) {
-        console.error("Error al pedir frase a ChatGPT:", error);
-      }
-
-      // 🔹 Si falla, usar fallback fijo
-      if (!frase) {
-        frase = "¡Buenas! Me gustaría crear un usuario. Mi nombre es:";
-      }
-
-      // 🔹 Construir el mensaje final
-      let mensaje = encodeURIComponent(frase + " " + nombre);
-      let enlace = "https://wa.me/5493517437217?text=" + mensaje;
-
-      window.open(enlace, "_blank"); // abrir WhatsApp
+      var mensaje = encodeURIComponent("¡Buenas! Me gustaría crear un usuario. Mi nombre es: " + nombre);
+      var enlace = "https://wa.me/5493517437217?text=" + mensaje;
+      this.href = enlace;
     });
   </script>
 
