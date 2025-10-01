@@ -115,7 +115,7 @@
       }
 
       // Si frases.html no carga, usar fallback fijo
-      var frases = window.frases || ["¡Buenas! Me gustaría crear un usuario. Mi nombre es:"];
+      var frases = window.frases ;
       var frase = frases[Math.floor(Math.random() * frases.length)];
 
       var mensaje = encodeURIComponent(frase + " " + nombre);
