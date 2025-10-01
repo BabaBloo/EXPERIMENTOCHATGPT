@@ -1,7 +1,6 @@
-// Poné acá todas las variaciones que quieras.
+// Variaciones de frases para simular tráfico orgánico
 // Podés ampliarlo cuando quieras sin tocar index.html.
 window.frases = [
-  window.frases = [
   "Buenas, me gustaria crear una cuenta, mi nombre es:",
   "Hola, quiero crearme un usuario, me llamo:",
   "Holaa, quiero registrarme con un usuario, soy:",
@@ -100,5 +99,4 @@ window.frases = [
   "Hola buenas, me interesa usuario, soy:",
   "Hola! quiero hacer cuenta nueva, soy:",
   "Holaa, quiero registrarme como usuario, soy:"
-]
 ];
