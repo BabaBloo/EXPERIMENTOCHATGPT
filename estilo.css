@@ -1,0 +1,190 @@
+/* 🔹 Animación de entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body {
+  font-family: "Bebas Neue", sans-serif;
+  background-color: #1D1D27;
+  animation: fadeIn 1s ease-in-out;
+  
+  background-image: url('./img/diseño.jpg');
+  background-size: contain; 
+  background-position: center;
+}
+
+/* Estilos para el logo */
+.logo {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.logo img {
+  width: 15rem;
+  animation: rotateIn 2s ease-in-out;
+}
+
+/* Título principal */
+.main-title {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-title p {
+  margin: 0; 
+  font-size: 40px;
+}
+
+.main-title p:first-child {
+  color: rgb(255, 255, 255);
+}
+
+.main-title p:nth-child(2) {
+  color: white;
+}
+
+.main-title h2 {
+  margin: 0; 
+  font-size: 40px;
+  color: #c600a5; /* Color amarillo para el título */
+}
+
+.main-title p, .main-title h2 {
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+.main-title p, .main-title h2 {
+  text-shadow: 4px 4px 8px rgba(2, 2, 2, 0.5); /* Sombra de texto */
+}
+
+/* Estilos del botón de WhatsApp */
+.whatsapp {
+  margin: 3rem 0 1rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  padding: 0.6em 1.3em;
+  display: flex;
+  gap: 1rem;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 30px;
+  background-color: #17171B;
+  border-radius: 10px;
+  border: 1px solid #c600a5; /* Borde amarillo */
+  color: aliceblue;
+  box-shadow: 0 0 25px #c600a5,
+              0 0 25px #c600a5,
+              0 0 5px #c600a5 inset;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px #c600a5,
+              0 0 30px #c600a5,
+              0 0 10px #c600a5 inset;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.button {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.button img {
+  width: 30px;
+}
+
+/* Información mínima de carga */
+.MINIMO {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.MINIMO p {
+  font-size: 25px;
+  text-align: center;
+}
+
+/* Sección de información general */
+.info-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #c600a5; /* Fondo amarillo dorado */
+  padding: 10px;
+  margin: 30px auto;
+  width: 500px;
+  max-width: 100%; /* Para que no se desborde en pantallas más pequeñas */
+  border-radius: 10px;
+  box-shadow: 0 0 15px #c600a5; /* Sombra dorada */
+  animation: fadeIn 1.5s ease-in-out; /* Animación de entrada */
+}
+
+/* Logo de la sección informativa */
+.info-logo {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 2px solid #341e74; /* Borde morado */
+}
+
+.info-text {
+  color: white;
+  font-size: 22px;
+}
+
+/* Sección de Términos */
+.TERMINO {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: 40px auto;
+  width: 90%;
+  max-width: 1200px;
+  border-radius: 10px;
+}
+
+/* Diseño especial para dispositivos móviles (320px a 600px) */
+@media (min-width: 320px) and (max-width: 600px) {
+  .info-section {
+    flex-direction: column; /* Cambiar de horizontal a vertical */
+    padding: 8px;
+    margin: 8px auto;
+    width: 92%; /* Ajustar para no quedar pegado a los lados */
+  }
+
+  .info-logo {
+    margin-bottom: 8px; /* Espacio entre la imagen y el texto */
+    width: 35px; /* Hacer la imagen más pequeña */
+    height: 35px;
+  }
+
+  .info-text {
+    font-size: 20px; /* Reducir tamaño del texto */
+    line-height: 1.3; /* Mejorar la separación entre líneas */
+  }
+}

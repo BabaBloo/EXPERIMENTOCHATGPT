@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0F3FJFRBSG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0F3FJFRBSG');
+</script>
+
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N7R6CHP6');</script>
+<!-- End Google Tag Manager -->
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casino Ganamos</title>
+
+  <!-- Enlace al archivo de estilo CSS -->
+  <link rel="stylesheet" href="estilo.css" />
+  
+  <!-- Conexiones con Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Icono del sitio -->
+  <link rel="shortcut icon" href="./img/logopixelzulma-removebg-preview.png" type="image/x-icon"/>
+
+  <!-- Enlace a la librería de animaciones CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+ 
+
+</head>
+
+<body>
+
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N7R6CHP6"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <!-- Logo de la página -->
+  <div class="logo animate_animated animate_flip">
+    <img src="./img/diseño.PNG" alt="Ganamos.co">
+  </div>
+
+  <!-- Título principal -->
+  <div class="main-title">
+    <p>Para crear tu cuenta</p>
+    <p>envíanos un Whatsapp</p>
+    <h2>haciendo click en el botón de abajo</h2>
+  </div>
+  
+  <!-- ✅ Nombre Input -->
+  <div style="text-align: center; margin: 20px;">
+    <input type="text" id="nombreUsuario" placeholder="Escribe tu nombre aquí" style="padding: 10px; width: 80%; max-width: 300px;"/>
+  </div>
+
+    <!-- ✅ WhatsApp Button (como link real) -->
+  <div class="whatsapp">
+    <a class="button" href="https://wa.me/5493517437217?text=¡Buenas! Me gustaría crear un usuario. Mi nombre es:" target="_blank" id="whatsappButton">
+      <span> Crea tu usuario </span>
+      <img src="./img/whatsapp-64.png" alt="WhatsApp Logo">
+    </a>
+  </div>
+
+  <!-- Información sobre el mínimo de carga -->
+  <div class="MINIMO">
+    <p>Minimo de Carga $3000</p>
+  </div>
+
+  <!-- Sección de información bancaria -->
+  <div class="info-section">
+    <img src="./img/bank_6719375.png" alt="Logo del banco" class="info-logo">
+    <p class="info-text">
+      Aceptamos transferencias bancarias.
+    </p>
+  </div>
+
+  <!-- Sección de disponibilidad las 24 horas -->
+  <div class="info-section">
+    <img src="./img/24-hours_1274033.png" alt="Disponibilidad 24 horas" class="info-logo">
+    <p class="info-text">
+      Estamos cargando las 24 hs todos los días.
+    </p>
+  </div>
+
+  <!-- Término legal sobre la edad mínima -->
+  <div class="TERMINO">
+    <p class="info-text">
+      Prohibido el juego de azar a menores de 18 años.
+    </p>
+  </div>
+
+
+  <!-- ✅ Script para actualizar link -->
+  <script>
+    document.getElementById('whatsappButton').addEventListener('click', function(e) {
+      var nombre = document.getElementById('nombreUsuario').value.trim();
+      if (nombre === "") {
+        alert("Por favor escribe tu nombre antes de continuar.");
+        e.preventDefault();
+        return;
+      }
+      var mensaje = encodeURIComponent("¡Buenas! Me gustaría crear un usuario. Mi nombre es: " + nombre);
+      var enlace = "https://wa.me/5493517437217?text=" + mensaje;
+      this.href = enlace;
+    });
+  </script>
+
+
+</body>
+</html>
