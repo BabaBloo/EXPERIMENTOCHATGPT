@@ -2,22 +2,26 @@
 <html lang="en">
 <head>
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0F3FJFRBSG"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0F3FJFRBSG');
-  </script>
 
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-N7R6CHP6');</script>
-  <!-- End Google Tag Manager -->
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0F3FJFRBSG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0F3FJFRBSG');
+</script>
+
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N7R6CHP6');</script>
+<!-- End Google Tag Manager -->
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -37,17 +41,16 @@
   <!-- Enlace a la librería de animaciones CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
-  <!-- 🔹 Archivo externo con las frases -->
-  <script src="frases.html"></script>
+ 
 
 </head>
 
 <body>
 
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N7R6CHP6"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N7R6CHP6"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
   <!-- Logo de la página -->
   <div class="logo animate_animated animate_flip">
@@ -66,9 +69,9 @@
     <input type="text" id="nombreUsuario" placeholder="Escribe tu nombre aquí" style="padding: 10px; width: 80%; max-width: 300px;"/>
   </div>
 
-  <!-- ✅ WhatsApp Button -->
+    <!-- ✅ WhatsApp Button (como link real) -->
   <div class="whatsapp">
-    <a class="button" href="#" target="_blank" id="whatsappButton">
+    <a class="button" href="https://wa.me/5493517437217?text=¡Buenas! Me gustaría crear un usuario. Mi nombre es:" target="_blank" id="whatsappButton">
       <span> Crea tu usuario </span>
       <img src="./img/whatsapp-64.png" alt="WhatsApp Logo">
     </a>
@@ -76,7 +79,7 @@
 
   <!-- Información sobre el mínimo de carga -->
   <div class="MINIMO">
-    <p>Mínimo de Carga $3000</p>
+    <p>Minimo de Carga $3000</p>
   </div>
 
   <!-- Sección de información bancaria -->
@@ -103,27 +106,33 @@
   </div>
 
 
-  <!-- ✅ Script para elegir frase aleatoria -->
-  <script>
-    document.getElementById('whatsappButton').addEventListener('click', function(e) {
-      e.preventDefault();
+    <!-- Nuestro script que usa esas frases -->
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      const boton = document.getElementById('whatsappButton');
+      boton.addEventListener('click', function(e) {
+        e.preventDefault();
 
-      var nombre = document.getElementById('nombreUsuario').value.trim();
-      if (nombre === "") {
-        alert("Por favor escribe tu nombre antes de continuar.");
-        return;
-      }
+        const nombre = document.getElementById('nombreUsuario').value.trim();
+        if (nombre === "") {
+          alert("Por favor escribe tu nombre antes de continuar.");
+          return;
+        }
 
-      // Si frases.html no carga, usar fallback fijo
-      var frases = window.frases ;
-      var frase = frases[Math.floor(Math.random() * frases.length)];
+        // Si por cualquier motivo no cargó frases.js, usamos fallback
+        const frases = (window.frases && Array.isArray(window.frases) && window.frases.length)
+          ? window.frases
+          : ["¡Buenas! Me gustaría crear un usuario. Mi nombre es:"];
 
-      var mensaje = encodeURIComponent(frase + " " + nombre);
-      var enlace = "https://wa.me/5493517437217?text=" + mensaje;
+        const frase = frases[Math.floor(Math.random() * frases.length)];
+        const mensaje = encodeURIComponent(frase + " " + nombre);
+        const enlace = "https://wa.me/5493517437217?text=" + mensaje;
 
-      window.open(enlace, "_blank");
+        window.open(enlace, "_blank");
+      });
     });
   </script>
+
 
 </body>
 </html>
