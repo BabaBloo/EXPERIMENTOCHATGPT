@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 
   <!-- Google tag (gtag.js) -->
@@ -21,12 +21,14 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Evita enviar Referer al abrir wa.me -->
+  <meta name="referrer" content="no-referrer">
   <title>Casino Ganamos</title>
 
   <!-- Enlace al archivo de estilo CSS -->
   <link rel="stylesheet" href="estilo.css" />
   
-  <!-- Conexiones con Google Fonts -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -34,24 +36,16 @@
   <!-- Icono del sitio -->
   <link rel="shortcut icon" href="./img/logopixelzulma-removebg-preview.png" type="image/x-icon"/>
 
-  <!-- Enlace a la librería de animaciones CSS -->
+  <!-- Animaciones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
-  <!-- 🔹 Importamos frases desde archivo externo -->
+  <!-- Frases públicas -->
   <script src="frases.js" defer></script>
 
+  <!-- Script limpio: no tiene números, hace POST a /api/go-wa -->
   <script defer>
   document.addEventListener('DOMContentLoaded', function () {
     const boton = document.getElementById('whatsappButton');
-
-    // 🔹 Lista de números de WhatsApp (agregá los que quieras)
-    const numeros = [
-      "5493844542639",  //maca 1
-      "5493844542580",  //maca 2
-      "5491169595406",  //maca 3
-      "5493844542573", //maca 4
-      
-    ];
 
     boton.addEventListener('pointerdown', function() {
       const nombre = document.getElementById('nombreUsuario').value.trim();
@@ -60,21 +54,44 @@
         return;
       }
 
-      // Selecciona un número aleatorio de la lista
-      const numeroAleatorio = numeros[Math.floor(Math.random() * numeros.length)];
+      // frase aleatoria desde frases.js (público)
+      const frase = (window.frases && window.frases.length)
+        ? window.frases[Math.floor(Math.random() * window.frases.length)]
+        : '';
 
-      // Selecciona una frase aleatoria
-      const frase = window.frases[Math.floor(Math.random() * window.frases.length)];
+      // Push para GTM si querés trackear clics (no expone números)
+      try {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'wa_click', nombre: nombre });
+      } catch (e) {
+        // no importa si falla
+      }
 
-      // Arma el mensaje final
-      const mensaje = encodeURIComponent(frase + " " + nombre);
-      const enlace = "https://wa.me/" + numeroAleatorio + "?text=" + mensaje;
+      // Creamos un form oculto y lo enviamos por POST al serverless (abrirá en nueva pestaña)
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = '/api/go-wa'; // ruta serverless en Vercel
+      form.target = '_blank';
+      form.style.display = 'none';
 
-      // Asigna el enlace al botón
-      boton.setAttribute('href', enlace);
+      const inputNombre = document.createElement('input');
+      inputNombre.name = 'nombre';
+      inputNombre.value = nombre;
+      form.appendChild(inputNombre);
+
+      const inputFrase = document.createElement('input');
+      inputFrase.name = 'frase';
+      inputFrase.value = frase;
+      form.appendChild(inputFrase);
+
+      document.body.appendChild(form);
+      form.submit();
+
+      // limpieza
+      setTimeout(()=> form.remove(), 500);
     });
 
-    // Bloquea el click si no hay nombre
+    // Validación de click para evitar envíos vacíos
     boton.addEventListener('click', function(e) {
       const nombre = document.getElementById('nombreUsuario').value.trim();
       if (!nombre) {
@@ -83,8 +100,7 @@
       }
     });
   });
-</script>
-
+  </script>
 </head>
 
 <body>
@@ -93,7 +109,7 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N7R6CHP6"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <!-- Logo de la página -->
+  <!-- Logo -->
   <div class="logo animate_animated animate_flip">
     <img src="./img/diseño.PNG" alt="Ganamos.co">
   </div>
@@ -105,38 +121,35 @@
     <h2>haciendo click en el botón de abajo</h2>
   </div>
   
-  <!-- ✅ Nombre Input -->
+  <!-- Nombre Input -->
   <div style="text-align: center; margin: 20px;">
     <input type="text" id="nombreUsuario" placeholder="Escribe tu nombre aquí" style="padding: 10px; width: 80%; max-width: 300px;"/>
   </div>
 
-  <!-- ✅ WhatsApp Button -->
-  <div class="whatsapp">
-    <a class="button" href="#" target="_blank" id="whatsappButton">
+  <!-- WhatsApp Button -->
+  <div class="whatsapp" style="text-align:center;">
+    <a class="button" href="#" target="_blank" id="whatsappButton" style="display:inline-flex; align-items:center; gap:8px; padding:12px 18px; background:#25D366; color:#fff; border-radius:8px; text-decoration:none;">
       <span> Crea tu usuario </span>
-      <img src="./img/whatsapp-64.png" alt="WhatsApp Logo">
+      <img src="./img/whatsapp-64.png" alt="WhatsApp Logo" style="height:20px;">
     </a>
   </div>
 
-  <!-- Información sobre el mínimo de carga -->
-  <div class="MINIMO">
+  <!-- Información -->
+  <div class="MINIMO" style="text-align:center; margin-top:14px;">
     <p>Minimo de Carga $3000</p>
   </div>
 
-  <!-- Sección de información bancaria -->
-  <div class="info-section">
-    <img src="./img/bank_6719375.png" alt="Logo del banco" class="info-logo">
+  <div class="info-section" style="text-align:center; margin-top:12px;">
+    <img src="./img/bank_6719375.png" alt="Logo del banco" class="info-logo" style="height:30px;">
     <p class="info-text">Aceptamos transferencias bancarias.</p>
   </div>
 
-  <!-- Sección de disponibilidad las 24 horas -->
-  <div class="info-section">
-    <img src="./img/24-hours_1274033.png" alt="Disponibilidad 24 horas" class="info-logo">
+  <div class="info-section" style="text-align:center;">
+    <img src="./img/24-hours_1274033.png" alt="Disponibilidad 24 horas" class="info-logo" style="height:30px;">
     <p class="info-text">Estamos cargando las 24 hs todos los días.</p>
   </div>
 
-  <!-- Término legal -->
-  <div class="TERMINO">
+  <div class="TERMINO" style="text-align:center; margin-top:8px;">
     <p class="info-text">Prohibido el juego de azar a menores de 18 años.</p>
   </div>
 
