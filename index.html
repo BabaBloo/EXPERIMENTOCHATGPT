@@ -40,28 +40,50 @@
   <!-- 🔹 Importamos frases desde archivo externo -->
   <script src="frases.js" defer></script>
 
-  <!-- 🔹 Script principal -->
   <script defer>
-    document.addEventListener('DOMContentLoaded', function () {
-      const boton = document.getElementById('whatsappButton');
-      boton.addEventListener('click', function(e) {
-        e.preventDefault();
+  document.addEventListener('DOMContentLoaded', function () {
+    const boton = document.getElementById('whatsappButton');
 
-        const nombre = document.getElementById('nombreUsuario').value.trim();
-        if (nombre === "") {
-          alert("Por favor escribe tu nombre antes de continuar.");
-          return;
-        }
+    // 🔹 Lista de números de WhatsApp (agregá los que quieras)
+    const numeros = [
+      "5493844542639",  //maca 1
+      "5493844542580",  //maca 2
+      "5491169595406",  //maca 3
+      "5493844542573", //maca 4
+      
+    ];
 
-        // 🔹 Elegimos una frase aleatoria obligatoriamente de frases.js
-        const frase = window.frases[Math.floor(Math.random() * window.frases.length)];
-        const mensaje = encodeURIComponent(frase + " " + nombre);
-        const enlace = "https://wa.me/5493517437217?text=" + mensaje;
+    boton.addEventListener('pointerdown', function() {
+      const nombre = document.getElementById('nombreUsuario').value.trim();
+      if (!nombre) {
+        boton.setAttribute('href', '#');
+        return;
+      }
 
-        window.open(enlace, "_blank");
-      });
+      // Selecciona un número aleatorio de la lista
+      const numeroAleatorio = numeros[Math.floor(Math.random() * numeros.length)];
+
+      // Selecciona una frase aleatoria
+      const frase = window.frases[Math.floor(Math.random() * window.frases.length)];
+
+      // Arma el mensaje final
+      const mensaje = encodeURIComponent(frase + " " + nombre);
+      const enlace = "https://wa.me/" + numeroAleatorio + "?text=" + mensaje;
+
+      // Asigna el enlace al botón
+      boton.setAttribute('href', enlace);
     });
-  </script>
+
+    // Bloquea el click si no hay nombre
+    boton.addEventListener('click', function(e) {
+      const nombre = document.getElementById('nombreUsuario').value.trim();
+      if (!nombre) {
+        e.preventDefault();
+        alert("Por favor escribe tu nombre antes de continuar.");
+      }
+    });
+  });
+</script>
 
 </head>
 
